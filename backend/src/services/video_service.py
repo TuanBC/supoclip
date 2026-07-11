@@ -88,6 +88,7 @@ class VideoService:
             "value_score": 0,
             "shareability_score": 0,
             "hook_type": "fallback",
+            "hook_title": None,
         }
 
     @staticmethod
@@ -272,6 +273,7 @@ class VideoService:
                 caption_template,
                 output_format,
                 keep_ranges,
+                segment.get("hook_title"),
             )
 
             if not success:
@@ -299,6 +301,7 @@ class VideoService:
                 "value_score": segment.get("value_score", 0),
                 "shareability_score": segment.get("shareability_score", 0),
                 "hook_type": segment.get("hook_type"),
+                "hook_title": segment.get("hook_title"),
                 "keep_ranges": keep_ranges,
             }
         except Exception as e:
@@ -486,6 +489,7 @@ class VideoService:
                             "value_score": virality.get("value_score", 0),
                             "shareability_score": virality.get("shareability_score", 0),
                             "hook_type": virality.get("hook_type"),
+                            "hook_title": segment.get("hook_title"),
                         }
                     )
                 else:
@@ -503,6 +507,7 @@ class VideoService:
                             "value_score": virality.get("value_score", 0),
                             "shareability_score": virality.get("shareability_score", 0),
                             "hook_type": virality.get("hook_type"),
+                            "hook_title": getattr(segment, "hook_title", None),
                         }
                     )
 

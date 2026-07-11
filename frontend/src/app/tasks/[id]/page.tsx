@@ -78,6 +78,7 @@ interface Clip {
   value_score: number;
   shareability_score: number;
   hook_type: string | null;
+  hook_title: string | null;
 }
 
 interface TaskDetails {
@@ -879,8 +880,12 @@ export default function TaskPage() {
                         <div className="p-6 flex-1">
                           <div className="flex items-start justify-between mb-4">
                             <div>
-                              <h3 className="font-semibold text-lg text-black mb-1">Clip {clip.clip_order}</h3>
+                              <h3 className="font-semibold text-lg text-black mb-1">
+                                {clip.hook_title || `Clip ${clip.clip_order}`}
+                              </h3>
                               <div className="flex items-center gap-2 text-sm text-gray-600">
+                                <span>Clip {clip.clip_order}</span>
+                                <span>•</span>
                                 <span>{clip.start_time} - {clip.end_time}</span>
                                 <span>•</span>
                                 <span>{formatDuration(clip.duration)}</span>
@@ -1170,8 +1175,12 @@ export default function TaskPage() {
                             />
                             Select for merge
                           </label>
-                          <h3 className="font-semibold text-lg text-black mb-1">Clip {clip.clip_order}</h3>
+                          <h3 className="font-semibold text-lg text-black mb-1">
+                            {clip.hook_title || `Clip ${clip.clip_order}`}
+                          </h3>
                           <div className="flex items-center gap-2 text-sm text-gray-600">
+                            <span>Clip {clip.clip_order}</span>
+                            <span>•</span>
                             <span>
                               {clip.start_time} - {clip.end_time}
                             </span>
